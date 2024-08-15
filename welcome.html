@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to bahay ni Mico!</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6));
+            background-size: 200% 200%;
+            animation: gradientAnimation 2s ease infinite;
+            height: 150vh; /* Increased height to allow scrolling */
+            margin: 0;
+            position: relative;
+        }
+        .welcome-container {
+            ackground-color: #02A6FB;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6));
+            background-size: 200% 200%;
+            animation: gradientAnimation 2s ease infinite;
+            padding: 20px;
+            border-radius: 10px;
+            border: 0.1rem solid #3A02FB;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+            position: relative;
+            z-index: 1;
+        }
+        .welcome-containers {
+            background-color: whitesmoke;
+            padding: 20px;
+            border-radius: 10px;
+            border: 0.1rem solid #BB02FB;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+            position: relative;
+            z-index: 1;
+        }
+        .welcome-container h1 {
+            margin-bottom: 20px;
+        }
+        .welcome-container p {
+            font-size: 16px;
+        }
+        .welcome-mic {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        img {
+            height: 83px;
+            width: 83px;
+            border-radius: 50%;
+            border: 0.1rem solid #5E02FB;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .welcome-containers {
+            display: flex;
+            align-items: center;
+        }
+        .pic-mico {
+            margin-left: 1rem;
+            margin-top: 1rem;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            color: #5602F0;
+        }
+        .same-size, a {
+            text-decoration: none;
+            color: #A402FB;
+        }
+        #falling-container {
+            position: fixed; /* Changed from absolute to fixed */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .falling-emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 1;
+            will-change: transform, opacity;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        footer {
+          font-size: 12px;
+          font-weight: bold;
+          text-align: center;
+          color: #024EFB;
+          margin-top: 1rem;
+        }
+        span {
+          color: #FB0212;
+          
+        }
+       .label {
+          text-align: center;
+        }
+        button {
+          font-size: 12px;
+          background: #02D4FB;
+          border: 1px solid black;
+          border-radius: 5px;
+        }
+        button:active {
+          background: red;
+        }
+       .p {
+         font-size: 15px;
+       }
+    </style>
+</head>
+<body>
+<header class="welcome-mic">
+    <div class="welcome-container">
+        <h1>Welcome!</h1>
+        <p class="same-size">Welcome to Bahay ni Mico!</p>
+        <a href="loginform.htm">Back to Login</a>
+        <br>
+        <button id="playPauseBtn" onclick="toggleMusic()">Play Music</button>
+    </div>
+</header>
+
+<p class="label">("click name")</p>
+
+<div class="container">
+    <div class="welcome-containers">
+        <img src="mico.jpg" alt="">
+        <a href="mico.html" class="pic-mico"><p class="same-size">Mico Quimson</p></a>
+    </div>
+    <br>
+    <div class="welcome-containers">
+        <img src="james.jpg" alt="">
+        <a href="james.html" class="pic-mico"><p class="same-size">James Anthonie Almero</p></a>
+    </div>
+    <br>
+    <div class="welcome-containers">
+        <img src="ryel.jpg" alt="">
+        <a href="ryel.html" class="pic-mico"><p class="same-size">Ryel Jaranta Maghanoy</p></a>
+    </div>
+    <br>
+    <div class="welcome-containers">
+        <img src="junry.jpg" alt="">
+        <a href="junry.html" class="pic-mico"><p class="same-size">Junry Pacot</p></a>
+    </div>
+    <br>
+    <div class="welcome-containers">
+      <p class="p">If you interested to join sa bahay ni <span>"Mico"</span> kindly dm me in facebook <a href="https://www.facebook.com/ryel.maghanoy.7">"Ryel Maghanoy" </a><= click my name</p>
+</div>
+</div>
+
+
+<div id="falling-container"></div>
+ 
+    
+    
+<audio id="myAudio" src="/pinoy.mp3" type="audio/mp3"></audio>
+
+<script>
+    function createFallingEmoji() {
+        const container = document.getElementById('falling-container');
+        const emoji = document.createElement('div');
+        emoji.className = 'falling-emoji';
+        emoji.textContent = '🥰';
+        emoji.style.left = `${Math.random() * 100
+        }vw`; 
+        emoji.style.top = `-${Math.random() * 100}px`; 
+        emoji.style.animation = `fall ${Math.random() * 3 + 2}s linear`; 
+        
+        container.appendChild(emoji);
+
+        emoji.addEventListener('animationend', () => {
+            container.removeChild(emoji);
+        });
+    }
+
+    const intervalDuration = 100; 
+    const totalDuration = 60000; 
+    let elapsedTime = 0;
+    
+    const interval = setInterval(() => {
+        if (elapsedTime < totalDuration) {
+            createFallingEmoji();
+            elapsedTime += intervalDuration; 
+        } else {
+            clearInterval(interval);
+        }
+    }, intervalDuration);
+
+    // Sounds
+    var isPlaying = false;
+    var music = document.getElementById("myAudio");
+    var playPauseBtn = document.getElementById("playPauseBtn");
+
+    function toggleMusic() {
+        if (isPlaying) {
+            music.pause();
+            playPauseBtn.textContent = "Play Music";
+        } else {
+            music.play();
+            playPauseBtn.textContent = "Pause Music";
+        }
+        isPlaying = !isPlaying;
+    }
+
+    music.onended = function() {
+        playPauseBtn.textContent = "Play Music";
+        isPlaying = false;
+    };
+</script>
+<footer>
+  ©developed by Ryel
+</footer>
+  </html>
