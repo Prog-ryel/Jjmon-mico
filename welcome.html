@@ -129,6 +129,31 @@
        .p {
          font-size: 15px;
        }
+        .upload-container {
+            background-color: whitesmoke;
+            padding: 20px;
+            border-radius: 10px;
+            border: 0.1rem solid #BB02FB;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+            margin: 20px auto;
+        }
+        .video-container {
+            background-color: whitesmoke;
+            padding: 20px;
+            border-radius: 10px;
+            border: 0.1rem solid #BB02FB;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+            margin: 20px auto;
+        }
+        video {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -170,6 +195,18 @@
 </div>
 </div>
 
+<div class="upload-container">
+    <h2>Upload Your Video</h2>
+    <input type="file" id="videoUpload" accept="video/*">
+    <button id="uploadBtn" onclick="uploadVideo()">Upload Video</button>
+    <p id="uploadStatus"></p>
+</div>
+
+<div class="video-container" id="videoContainer" style="display: none;">
+    <h2>Uploaded Video</h2>
+    <video id="uploadedVideo" controls></video>
+</div>
+    
 
 <div id="falling-container"></div>
  
@@ -228,6 +265,31 @@
         playPauseBtn.textContent = "Play Music";
         isPlaying = false;
     };
+    // Video upload function
+    function uploadVideo() {
+        const videoInput = document.getElementById('videoUpload');
+        const uploadStatus = document.getElementById('uploadStatus');
+        const videoContainer = document.getElementById('videoContainer');
+        const uploadedVideo = document.getElementById('uploadedVideo');
+
+        if (videoInput.files.length > 0) {
+            const file = videoInput.files[0];
+            const videoURL = URL.createObjectURL(file); // Create a URL for the uploaded video
+
+            // Display the uploaded video
+            uploadedVideo.src = videoURL;
+            videoContainer.style.display = 'block';
+
+            // Simulate a file upload process
+            uploadStatus.textContent = `Uploading ${file.name}...`;
+
+            setTimeout(() => {
+                uploadStatus.textContent = `Upload successful!`;
+            }, 2000); // Simulate upload delay
+        } else {
+            uploadStatus.textContent = 'Please select a video file first.';
+        }
+    }
 </script>
 <footer>
   ©developed by Ryel
