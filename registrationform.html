@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+    
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6));
+            background-size: 200% 200%;
+            animation: gradientAnimation 5s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .registration-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #6802FB;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .registration-container h2 {
+            margin-bottom: 20px;
+        }
+        .registration-container input[type="text"],
+        .registration-container input[type="email"],
+        .registration-container input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .registration-container button {
+            width: 98%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input {
+          outline: 1px solid #872FEB;
+        }
+        
+        input:hover, input:active {
+          outline: 2px solid #872FEB;
+          filter: drop-shadow(1px 1px 15px #872FEB);
+        }
+        
+        .registration-container button:hover {
+            background-color: #218838;
+        }
+        .registration-container .link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+        .success {
+            color: green;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+        h2 {
+          font-size: 30px;
+          color: #6802FB;
+        }
+    </style>
+</head>
+<body>
+
+<div class="registration-container">
+    <h2>Register</h2>
+    <form id="registrationForm">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        <div id="message"></div>
+        <button type="submit">Register</button>
+    </form>
+    <div class="link">
+        Already have an account? <a href="loginform.html">Login here</a>.
+    </div>
+</div>
+
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const username = document.querySelector('input[name="username"]').value;
+        const password = document.querySelector('input[name="password"]').value;
+        const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
+        const message = document.getElementById('message');
+
+        if (password !== confirmPassword) {
+            message.textContent = "Passwords do not match!";
+            message.className = "error";
+        } else {
+            message.textContent = "Registration successful!";
+            message.className = "success";
+
+            // Store the registration details in local storage
+            localStorage.setItem('registeredUsername', username);
+            localStorage.setItem('registeredPassword', password);
+
+            // Redirect to the login page after a short delay
+            setTimeout(function() {
+                window.location.href = 'loginform.html';
+            }, 1000);
+        }
+    });
+</script>
+
+</body>
+                            </html>
