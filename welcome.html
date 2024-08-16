@@ -121,7 +121,7 @@
           margin-top: 1rem;
         }
         span {
-          color: #FB0212;
+          color: #00EE4C;
           
         }
        .label {
@@ -172,7 +172,7 @@
 <body>
 <header class="welcome-mic">
     <div class="welcome-container">
-        <h1>Welcome!</h1>
+        <h1>Welcome, <span id="username"></span>!</h1>
         <p class="same-sizes">Welcome to Bahay ni Mico!</p>
         <a href="loginform.htm">Back to Login</a>
         <br>
@@ -269,6 +269,13 @@
         playPauseBtn.textContent = "Play Music";
         isPlaying = false;
     };
+    // Display username
+    document.addEventListener('DOMContentLoaded', function() {
+        const username = localStorage.getItem('loggedInUsername');
+        if (username) {
+            document.getElementById('username').textContent = username;
+        }
+    });
 
 </script>
 <footer>
