@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <style>
-     @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-     
+        @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
         body {
             font-family: 'Poppins', Arial, sans-serif;
             background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6));
@@ -41,10 +41,7 @@
         input {
           outline: 1px solid #872FEB;
         }
-        input {
-          outline: 1px solid #872FEB;
-        }
-        
+
         input:hover, input:active {
           outline: 2px solid #872FEB;
           filter: drop-shadow(1px 1px 15px #872FEB);
@@ -62,7 +59,29 @@
         .login-container button:hover {
             background-color: #0056b3;
         }
-        .login-container .link {
+        .login-container .separator {
+            margin: 20px 0;
+            position: relative;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        .login-container .separator:before,
+        .login-container .separator:after {
+            content: "";
+            position: absolute;
+            width: 40%;
+            height: 1px;
+            background-color: #ccc;
+            top: 50%;
+        }
+        .login-container .separator:before {
+            left: 0;
+        }
+        .login-container .separator:after {
+            right: 0;
+        }
+        .link {
             margin-top: 15px;
             font-size: 14px;
         }
@@ -83,6 +102,7 @@
           color: #6802FB;
         }
     </style>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
@@ -95,6 +115,18 @@
         <br>
         <button type="submit">Login</button>
     </form>
+    
+    <!-- Separator -->
+    <div class="separator">or</div>
+    
+    <!-- Google Sign-In Button -->
+    <div id="g_id_onload"
+         data-client_id="YOUR_CLIENT_ID"
+         data-login_uri="http://localhost:7700"
+         data-callback="handleCredentialResponse">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
+    
     <div class="link">
         Don't have an account? <a href="registrationform.html">Register here</a>.
     </div>
@@ -102,26 +134,30 @@
 
 <script>
     document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
+        event.preventDefault(); // Prevent form submission
 
-    const username = document.querySelector('input[name="username"]').value;
-    const password = document.querySelector('input[name="password"]').value;
-    const message = document.getElementById('message');
+        const username = document.querySelector('input[name="username"]').value;
+        const password = document.querySelector('input[name="password"]').value;
+        
 
-    // Get stored registration details
-    const registeredUsername = localStorage.getItem('registeredUsername');
-    const registeredPassword = localStorage.getItem('registeredPassword');
+        // Get stored registration details
+        const registeredUsername = localStorage.getItem('registeredUsername');
+        const registeredPassword = localStorage.getItem('registeredPassword');
 
-    // Check if the input matches the stored registration details
-    if (username === registeredUsername && password === registeredPassword) {
-        // Redirect to the welcome page
-        window.location.href = 'welcome.html';
-    } else {
-        message.textContent = "Invalid username or password!";
-        message.className = "error";
-    }
-});
+        // Check if the input matches the stored registration details
+        if (username === registeredUsername && password === registeredPassword) {
+            // Store username in localStorage
+            localStorage.setItem('loggedInUsername', username);
+            // Redirect to the welcome page
+            window.location.href = 'welcome.html';
+        } else {
+            message.textContent = "Invalid username or password!";
+            message.className = "error";
+        }
+    });
+
+    
 </script>
 
 </body>
-  </html>
+</html>
