@@ -9,7 +9,7 @@
 
         body {
             font-family: 'Poppins', Arial, sans-serif;
-            background: url('jjmon.jpg') no-repeat center top;
+            background: url('/jjmon.jpg') no-repeat top;
             background-size: cover;
         /*/   background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6)); /*/
             background-size: 200% 200%;
@@ -20,7 +20,7 @@
         }
         .welcome-container {
             background-color: #02A6FB;
-            background: url('img.jpeg') no-repeat center center;
+            background: url('/img.jpeg') no-repeat center center;
             background-size: cover;
             
           /*/  background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6)); /*/
@@ -141,37 +141,31 @@
          color: #00ADFFFA;
          font-weight: bolder;
        }
-        .upload-container {
-            background-color: whitesmoke;
-            padding: 20px;
-            border-radius: 10px;
-            border: 0.1rem solid #BB02FB;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-            margin: 20px auto;
-        }
-        .video-container {
-            background-color: whitesmoke;
-            padding: 20px;
-            border-radius: 10px;
-            border: 0.1rem solid #BB02FB;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 320px;
-            margin: 20px auto;
-        }
+        
         video {
-            width: 100%;
+            border: 2px solid #3700FFFA;
+            width: 200px;
+            width: 170px;
             border-radius: 10px;
-            margin-top: 10px;
-        }
+            }
+        
         h1 {
           color: #6613FF;
         }
         .same-sizes {
           color: #FF00B7;
           font-weight: bolder;
+        }
+        .video-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 2rem;
+        }
+        h5 {
+          text-align: center;
+          font-weight: bold;
+          color: #6B00FFFA
         }
     </style>
 </head>
@@ -213,23 +207,14 @@
       <p class="p">If you interested to join sa bahay ni <span>"Mico"</span> kindly dm me in facebook <a href="https://www.facebook.com/ryel.maghanoy.7">"Ryel Maghanoy" </a><= click my name</p>
 </div>
 </div>
-
-<div class="upload-container">
-    <h2>Upload Your Video</h2>
-    <input type="file" id="videoUpload" accept="video/*">
-    <button id="uploadBtn" onclick="uploadVideo()">Upload Video</button>
-    <p id="uploadStatus"></p>
+ <h5>🥵</h5>
+<div class="video-container">
+  <video controls>
+  <source src="blog.mp4" type="video/mp4">
+</video>
 </div>
-
-<div class="video-container" id="videoContainer" style="display: none;">
-    <h2>Uploaded Video</h2>
-    <video id="uploadedVideo" controls></video>
-</div>
-    
 
 <div id="falling-container"></div>
- 
-    
     
 <audio id="myAudio" src="pinoy.mp3" type="audio/mp3"></audio>
 
@@ -284,33 +269,9 @@
         playPauseBtn.textContent = "Play Music";
         isPlaying = false;
     };
-    // Video upload function
-    function uploadVideo() {
-        const videoInput = document.getElementById('videoUpload');
-        const uploadStatus = document.getElementById('uploadStatus');
-        const videoContainer = document.getElementById('videoContainer');
-        const uploadedVideo = document.getElementById('uploadedVideo');
 
-        if (videoInput.files.length > 0) {
-            const file = videoInput.files[0];
-            const videoURL = URL.createObjectURL(file); // Create a URL for the uploaded video
-
-            // Display the uploaded video
-            uploadedVideo.src = videoURL;
-            videoContainer.style.display = 'block';
-
-            // Simulate a file upload process
-            uploadStatus.textContent = `Uploading ${file.name}...`;
-
-            setTimeout(() => {
-                uploadStatus.textContent = `Upload successful!`;
-            }, 2000); // Simulate upload delay
-        } else {
-            uploadStatus.textContent = 'Please select a video file first.';
-        }
-    }
 </script>
 <footer>
   ©developed by Ryel
 </footer>
-    </html>
+</html>
