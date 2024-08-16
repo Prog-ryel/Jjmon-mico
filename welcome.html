@@ -9,7 +9,9 @@
 
         body {
             font-family: 'Poppins', Arial, sans-serif;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6));
+            background: url('jjmon.jpg') no-repeat center top;
+            background-size: cover;
+        /*/   background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6)); /*/
             background-size: 200% 200%;
             animation: gradientAnimation 2s ease infinite;
             height: 150vh; /* Increased height to allow scrolling */
@@ -17,27 +19,33 @@
             position: relative;
         }
         .welcome-container {
-            ackground-color: #02A6FB;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6));
-            background-size: 200% 200%;
-            animation: gradientAnimation 2s ease infinite;
+            background-color: #02A6FB;
+            background: url('/img.jpeg') no-repeat center center;
+            background-size: cover;
+            
+          /*/  background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6)); /*/
+            
+            
             padding: 20px;
             border-radius: 10px;
             border: 0.1rem solid #3A02FB;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 300px;
+            width: 320px;
             position: relative;
             z-index: 1;
+            color: black;
+            
         }
         .welcome-containers {
             background-color: whitesmoke;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
             padding: 20px;
             border-radius: 10px;
             border: 0.1rem solid #BB02FB;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 300px;
+            width: 320px;
             position: relative;
             z-index: 1;
         }
@@ -80,7 +88,9 @@
         }
         .same-size, a {
             text-decoration: none;
-            color: #A402FB;
+            color: #FF13C9;
+            font-weight: bold;
+            
         }
         #falling-container {
             position: fixed; /* Changed from absolute to fixed */
@@ -128,6 +138,8 @@
         }
        .p {
          font-size: 15px;
+         color: #00ADFFFA;
+         font-weight: bolder;
        }
         .upload-container {
             background-color: whitesmoke;
@@ -146,7 +158,7 @@
             border: 0.1rem solid #BB02FB;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 300px;
+            width: 320px;
             margin: 20px auto;
         }
         video {
@@ -154,13 +166,20 @@
             border-radius: 10px;
             margin-top: 10px;
         }
+        h1 {
+          color: #6613FF;
+        }
+        .same-sizes {
+          color: #FF00B7;
+          font-weight: bolder;
+        }
     </style>
 </head>
 <body>
 <header class="welcome-mic">
     <div class="welcome-container">
         <h1>Welcome!</h1>
-        <p class="same-size">Welcome to Bahay ni Mico!</p>
+        <p class="same-sizes">Welcome to Bahay ni Mico!</p>
         <a href="loginform.htm">Back to Login</a>
         <br>
         <button id="playPauseBtn" onclick="toggleMusic()">Play Music</button>
@@ -294,4 +313,4 @@
 <footer>
   ©developed by Ryel
 </footer>
-  </html>
+    </html>
