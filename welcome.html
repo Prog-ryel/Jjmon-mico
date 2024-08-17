@@ -182,6 +182,7 @@ button:active {
         
         h1 {
           color: #6613FF;
+          font-size: 24px;
         }
         .same-sizes {
           color: #FF00B7;
@@ -223,8 +224,7 @@ button:active {
      /*/     border-radius: 20px;
           background-color: black;/*/
         }
-   i, label {
-          font-size: 15;
+   i, label, h3 {
    background-size: 300% 300%;
    /*/animation: gradient 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;/*/
    background-image: linear-gradient(
@@ -247,7 +247,20 @@ button:active {
     background-position: 0% 0%;
    }
   }
-    }
+   h3 {
+     text-align: center;
+     font-size: 26px;
+     background-size: 300% 300%;
+   /*/animation: gradient 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;/*/
+   background-image: linear-gradient(
+     45deg, #FF0000, #FF7300, #FFFB00, #48FF00, #00FFD5, #002BFF, #FF00CB, #FF0000
+   );
+   animation: glowing 20s linear infinite;
+   background-clip: text;
+   -webkit-background-clip: text;
+   color: transparent;
+  }
+   }
 
     </style>
 </head>
@@ -322,6 +335,7 @@ button:active {
 
  <div class="icon-class">
    <div class="icon">
+     <h3>CONTACT!</h3>
      <i class="fa fa-phone" style="font-size: 20px;"></i>
         <label>09269179969</label>
         <br><br>
