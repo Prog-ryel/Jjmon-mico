@@ -126,8 +126,9 @@
         }
        .label {
           text-align: center;
+          font-weight: bold;
         }
-        button {
+     /*/   button {
           font-size: 12px;
           background: #02D4FB;
           border: 1px solid black;
@@ -135,7 +136,28 @@
         }
         button:active {
           background: red;
-        }
+        }/*/
+        /* From Uiverse.io by hakemdamer222 */ 
+button,
+button:focus {
+  font-size: 17px;
+  padding: 5px 17px;
+  border-radius: 0.7rem;
+  background-image: linear-gradient(rgb(214, 202, 254), rgb(158, 129, 254));
+  border: 2px solid rgb(50, 50, 50);
+  border-bottom: 5px solid rgb(50, 50, 50);
+  box-shadow: 0px 1px 6px 0px rgb(158, 129, 254);
+  transform: translate(0, -3px);
+  cursor: pointer;
+  transition: 0.2s;
+  transition-timing-function: linear;
+}
+
+button:active {
+  transform: translate(0, 0);
+  border-bottom: 2px solid rgb(50, 50, 50);
+}
+
        .p {
          font-size: 15px;
          color: #00ADFFFA;
@@ -145,8 +167,9 @@
         video {
             border: 2px solid #3700FFFA;
             width: 200px;
-            width: 170px;
+            width: 150px;
             border-radius: 10px;
+            margin-left: 5px;
             }
         
         h1 {
@@ -167,6 +190,13 @@
           font-weight: bold;
           color: #6B00FFFA
         }
+        .mico-dance {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 2rem;
+        }
+
     </style>
 </head>
 <body>
@@ -204,14 +234,39 @@
     </div>
     <br>
     <div class="welcome-containers">
-      <p class="p">If you interested to join sa bahay ni <span>"Mico"</span> kindly dm me in facebook <a href="https://www.facebook.com/ryel.maghanoy.7">"Ryel Maghanoy" </a><= click my name</p>
+        <img src="josh.jpg" alt="">
+        <a href="josh.html" class="pic-mico"><p class="same-size">Josh Francisco</p></a>
+    </div>
+    <br>
+    <div class="welcome-containers">
+      <p class="p">If you interested to join sa bahay ni <span>"Mico"</span> kindly dm me in facebook <a href="https://www.facebook.com/ryel.maghanoy.7">"Ryel Maghanoy" </a></p>
 </div>
 </div>
  <h5>🥵</h5>
 <div class="video-container">
+  <div class="video">
   <video controls>
   <source src="blog.mp4" type="video/mp4">
 </video>
+</div>
+<div class="video">
+  <video controls>
+  <source src="sayawmico.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+
+<div class="video-container">
+  <div class="video">
+  <video controls>
+  <source src="kantamico.mp4" type="video/mp4">
+</video>
+</div>
+<div class="video">
+  <video controls>
+  <source src="balaod.mp4" type="video/mp4">
+</video>
+</div>
 </div>
 
 <div id="falling-container"></div>
@@ -278,7 +333,4 @@
     });
 
 </script>
-<footer>
-  ©developed by Ryel
-</footer>
-</html>
+          </html>
