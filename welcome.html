@@ -69,7 +69,7 @@
             justify-content: center;
             margin-top: 2rem;
         }
-        img {
+        .student {
             height: 83px;
             width: 83px;
             border-radius: 50%;
@@ -261,7 +261,37 @@ button:active {
    color: transparent;
   }
    }
-
+   .logo-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .logo {
+            text-align: center;
+        }
+        .logo, .log {
+            width: 50px;
+            height: 50px;
+            border: 0.5px solid #00B0FF;
+            border-radius: 50%;
+        }
+        .logo, .log:hover {
+          width: 55px;
+          height: 55px;
+          filter: drop-shadow(1px 1px 15px #0CF0E7);
+        }
+        .logo  {
+            font-size: 14px;
+            margin-top: 5px;
+            color: #024EFB;
+            font-weight: bold;
+        }
+        .page {
+          font-size: 12px;
+          color: #00B0FF;
+          font-family: bold;
+        }
     </style>
 </head>
 <body>
@@ -277,30 +307,53 @@ button:active {
 
 <p class="label">("click name")</p>
 
+        
+    </div>
+     <div class="container">
+            <div class="welcome-containers">
+                <p class="page">Hello! I’m Mico, an IT Student in asscat. Here are the programming languages I am learning:</p>
+                <img class="log"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+        
+    
+    
+        <img class="log" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+        
+    
+    
+        <img class="log" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+        
+    
+    
+        <img class="log" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
+        
+            </div>
+        </div>
+</section>
+
 <div class="container">
     <div class="welcome-containers">
-        <img src="mico.jpg" alt="">
+        <img class="student" src="mico.jpg" alt="">
         <a href="mico.html" class="pic-mico"><p class="same-size">Mico Quimson</p></a>
     </div>
     <br>
     <div class="welcome-containers">
-        <img src="james.jpg" alt="">
+        <img class="student" src="james.jpg" alt="">
         <a href="james.html" class="pic-mico"><p class="same-size">James Anthonie Almero</p></a>
     </div>
     
     <br>
     <div class="welcome-containers">
-        <img src="ryel.jpg" alt="">
+        <img class="student" src="ryel.jpg" alt="">
         <a href="ryel.html" class="pic-mico"><p class="same-size">Ryel Jaranta Maghanoy</p></a>
     </div>
     <br>
     <div class="welcome-containers">
-        <img src="junry.jpg" alt="">
+        <img class="student" src="junry.jpg" alt="">
         <a href="junry.html" class="pic-mico"><p class="same-size">Junry Pacot</p></a>
     </div>
     <br>
     <div class="welcome-containers">
-        <img src="josh.jpg" alt="">
+        <img class="student" src="josh.jpg" alt="">
         <a href="josh.html" class="pic-mico"><p class="same-size">Josh Francisco</p></a>
     </div>
     <br>
@@ -333,6 +386,8 @@ button:active {
 </div>
 </div>
 
+
+
  <div class="icon-class">
    <div class="icon">
      <h3>CONTACT!</h3>
@@ -340,13 +395,13 @@ button:active {
         <label>09269179969</label>
         <br><br>
         <i class="fa fa-instagram" style="font-size: 20px;"></i>
-        <label>Ryel</label>
+        <label>Mico</label>
         <br><br>
         <i class="fa fa-envelope" style="font-size: 19px;"></i>
-        <label>ryellmaghanoy@gmail.com</label>
+        <label>micoquimson@gmail.com</label>
         <br><br>
        <a class="icon-logo" href="https://www.facebook.com/ryel.maghanoy.7"><i class="fa fa-facebook" style="font-size: 20px;"></i></a>
-        <label>Ryel Jaranta Maghanoy</label>
+        <label>Mico Quimson</label>
         <br><br />
         <i class="fa fa-address-card" style="font-size: 19px;"></i>
         <label class="purok">Purok-1, Aurora, Prosperidad, Agusan del Sur</label>
