@@ -139,6 +139,45 @@
                 font-size: 12px;
             }
         }
+        button {
+  padding: 1em 1em;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 6.2px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #2c9caf;
+  transition: all 1000ms;
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid #2c9caf;
+}
+
+button:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+  outline: 1px solid #70bdca;
+  box-shadow: 4px 5px 17px -4px #268391;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #2c9caf;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+button:hover::before {
+  width: 220%;
+}
     </style>
 </head>
 <body>
@@ -149,11 +188,33 @@
         <p>Email: joshfrancisco@gmail.com</p>
         <p>Location: Talacogon, Agusan del Sur</p>
         <p>the nonchalant boy🔥</p>
+         <button id="playPauseBtn" onclick="toggleMusic()">Play Music</button>
         <div class="clock" id="clock"></div>
-       
+        <audio id="myAudio" src="meow.mp3" type="audio/mp3"></audio>
     </div>
 
     <script>
+
+        var isPlaying = false;
+    var music = document.getElementById("myAudio");
+    var playPauseBtn = document.getElementById("playPauseBtn");
+
+    function toggleMusic() {
+        if (isPlaying) {
+            music.pause();
+            playPauseBtn.textContent = "Play Music";
+        } else {
+            music.play();
+            playPauseBtn.textContent = "Pause Music";
+        }
+        isPlaying = !isPlaying;
+    }
+
+    music.onended = function() {
+        playPauseBtn.textContent = "Play Music";
+        isPlaying = false;
+    };
+        
         function updateClock() {
             const now = new Date();
             let hours = now.getHours();
