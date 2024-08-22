@@ -193,10 +193,13 @@
         }
         
     // Check if credentials match the registered user
+// Check if credentials match the registered user
 function loginUser(username, password) {
     const registeredUser = JSON.parse(localStorage.getItem('registeredUser'));
     
     if (registeredUser && registeredUser.username === username && registeredUser.password === password) {
+        // Store the logged-in username in localStorage
+        localStorage.setItem('loggedInUsername', username);
         return true;
     }
     return false;
@@ -212,7 +215,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     if (loginUser(username, password)) {
         document.getElementById('message').textContent = "Login successful!";
         document.getElementById('message').classList.add('success');
-        // Redirect to another page after successful login
+        // Redirect to dashboard or another page here
         window.location.href = 'welcome.html';  // Change 'dashboard.html' to your target page
     } else {
         document.getElementById('message').textContent = "Invalid username or password!";
@@ -220,6 +223,15 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     }
 });
 
+// Toggle password visibility
+function togglePassword() {
+    const passwordField = document.getElementById('password');
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+    } else {
+        passwordField.type = "password";
+    }
+}
 // Toggle password visibility
 function togglePassword() {
     const passwordField = document.getElementById('password');
