@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JAVASCRIPT CODE</title>
+  <style>
+    body {
+      background-color: #09E5E6;
+    }
+    .video-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 2rem;
+        }
+        img {
+            border: 2px solid #3700FFFA;
+            width: 205px;
+            width: 340px;
+            border-radius: 10px;
+            
+        }
+        h1 {
+          text-align: center;
+          color: #7600EE;
+          font-size: 25px;
+        }
+        button {
+  padding: 1em 1em;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 6.2px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #2c9caf;
+  transition: all 1000ms;
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid #2c9caf;
+}
+
+button:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+  outline: 1px solid #70bdca;
+  box-shadow: 4px 5px 17px -4px #268391;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #2c9caf;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+button:hover::before {
+  width: 220%;
+}
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+  </style>
+</head>
+<h1>JAVASCRIPT CODE</h1>
+
+<hr>
+<h1>1st page</h1>
+<hr>
+
+<body>
+  
+  <div class="video-container">
+  <div class="video">
+  <img src="java.png" alt="">
+</div>
+</div>
+
+<hr>
+<h1>2nd page</h1>
+<hr>
+
+<div class="video-container">
+  <div class="video">
+  <img src="script.png" alt="">
+</div>
+</div>
+
+
+<div class="button">
+<a href="welcome.html"><button>back to page</button></a>
+</div>
+
+</body>
