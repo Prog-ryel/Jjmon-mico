@@ -102,34 +102,66 @@
           font-size: 30px;
           color: #6802FB;
         }
-        .rre-img {
-          
+       .rre-img {
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          border: 1px solid #00FFEF; /* Bright cyan border */
+          background: linear-gradient(135deg, #FF6EC7, #FF9A8B, #00FFEF, #9B59B6, #AC02FF); /* Multi-color gradient */
+          background-size: 400% 400%; /* Expands gradient for more effect */
+          animation: gradientAnimation 10s ease infinite; /* Animation for dynamic effect */
+          box-shadow: 0 0 20px rgba(255, 105, 180, 0.6); /* Neon glow effect */
+        }
+
+        @keyframes gradientAnimation {
+          0% { background-position: 0% 0%; }
+          50% { background-position: 100% 100%; }
+          100% { background-position: 0% 0%; }
         }
         .rre {
           height: 100%;
           width: 70%;
         }
+        .show-password {
+          margin-bottom: 1rem;
+        }
+        .clock {
+          text-align: start;
+            
+            font-size: 15px;
+            color: red;
+     
+            
+        }
+        
     </style>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
 <div class="login-container">
+   <div class="clock" id="clock"></div>
+  <hr>
   <div class="rre-img">
     
     <img class="rre" src="rre.png" alt="">
-    <h2>Login</h2>
+   
   </div>
-    
+  <hr>
+     <h2>Login</h2>
     <form id="loginForm">
         <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" id="password" placeholder="Password" required>
         <div id="message"></div>
         <br>
+        
+        <div class="show-password">
+            <input type="checkbox" id="showPassword" onclick="togglePassword()"> 
+            <label class="label" for="showPassword">Show Password</label>
+        </div>
+        
         <button type="submit">Login</button>
+        <br>
     </form>
     
     <!-- Separator -->
@@ -149,6 +181,38 @@
 </div>
 
 <script>
+
+  function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const showPassword = document.getElementById('showPassword');
+            if (showPassword.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        }
+        //clock
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+
+            // Convert 24-hour time to 12-hour time
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+
+            const timeString = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+
+        setInterval(updateClock, 1000);
+        updateClock(); // initial call to display clock immediately
+        displayPhoneBrand(); // Call function to display cellphone brand
+        
+
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form submission
 
@@ -173,7 +237,8 @@
     });
 
     
+
 </script>
 
 </body>
-</html>
+                              </html>
