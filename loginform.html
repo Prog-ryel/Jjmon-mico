@@ -183,7 +183,7 @@
 <script>
 
   function togglePassword() {
-            const passwordField = document.getElementById('password');
+            const passwordField = document.getElementById('passwords');
             const showPassword = document.getElementById('showPassword');
             if (showPassword.checked) {
                 passwordField.type = 'text';
@@ -192,28 +192,43 @@
             }
         }
         
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
+    // Check if credentials match the registered user
+function loginUser(username, password) {
+    const registeredUser = JSON.parse(localStorage.getItem('registeredUser'));
+    
+    if (registeredUser && registeredUser.username === username && registeredUser.password === password) {
+        return true;
+    }
+    return false;
+}
 
-        const username = document.querySelector('input[name="username"]').value;
-        const password = document.querySelector('input[name="password"]').value;
-        
+// Login form submission
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-        // Get stored registration details
-        const registeredUsername = localStorage.getItem('registeredUsername');
-        const registeredPassword = localStorage.getItem('registeredPassword');
+    const username = event.target.username.value;
+    const password = event.target.password.value;
 
-        // Check if the input matches the stored registration details
-        if (username === registeredUsername && password === registeredPassword) {
-            // Store username in localStorage
-            localStorage.setItem('loggedInUsername', username);
-            // Redirect to the welcome page
-            window.location.href = 'welcome.html';
-        } else {
-            message.textContent = "Invalid username or password!";
-            message.className = "error";
-        }
-    });
+    if (loginUser(username, password)) {
+        document.getElementById('message').textContent = "Login successful!";
+        document.getElementById('message').classList.add('success');
+        // Redirect to another page after successful login
+        window.location.href = 'welcome.html';  // Change 'dashboard.html' to your target page
+    } else {
+        document.getElementById('message').textContent = "Invalid username or password!";
+        document.getElementById('message').classList.add('error');
+    }
+});
+
+// Toggle password visibility
+function togglePassword() {
+    const passwordField = document.getElementById('password');
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+    } else {
+        passwordField.type = "password";
+    }
+}
 
     //clock
         function updateClock() {
@@ -234,7 +249,7 @@
 
         setInterval(updateClock, 1000);
         updateClock(); // initial call to display clock immediately
-        displayPhoneBrand(); // Call function to display cellphone brand
+       
 
     
 
