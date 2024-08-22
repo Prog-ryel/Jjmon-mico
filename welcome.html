@@ -476,12 +476,12 @@ button:active {
         playPauseBtn.textContent = "Play Music";
         isPlaying = false;
     };
-    // Display username
-    document.addEventListener('DOMContentLoaded', function() {
-        const username = localStorage.getItem('loggedInUsername');
-        if (username) {
-            document.getElementById('username').textContent = username;
-        }
+    // Display username when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const username = localStorage.getItem('loggedInUsername');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    }
     });
 
 </script>
