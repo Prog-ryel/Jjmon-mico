@@ -83,25 +83,51 @@
           color: #6802FB;
         }
         .rre-img {
-          
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          border: 1px solid #00FFEF; /* Bright cyan border */
+          background: linear-gradient(135deg, #FF6EC7, #FF9A8B, #00FFEF, #9B59B6, #AC02FF); /* Multi-color gradient */
+          background-size: 400% 400%; /* Expands gradient for more effect */
+          animation: gradientAnimation 10s ease infinite; /* Animation for dynamic effect */
+          box-shadow: 0 0 20px rgba(255, 105, 180, 0.6); /* Neon glow effect */
         }
+
+          @keyframes gradientAnimation {
+          0% { background-position: 0% 0%; }
+          50% { background-position: 100% 100%; }
+          100% { background-position: 0% 0%; }
+        }
+
         .rre {
           height: 100%;
           width: 70%;
+        }
+        .show-password {
+          margin-bottom: 1rem;
+        }
+        .clock {
+          text-align: start;
+            
+            font-size: 15px;
+            color: red;
+     
+            
         }
     </style>
 </head>
 <body>
 
 <div class="registration-container">
-    <div class="rre-img">
+  <div class="clock" id="clock"></div>
+  <hr>
+  <div class="rre-img">
     
     <img class="rre" src="rre.png" alt="">
+   
+  </div>
+  <hr>
     <h2>Register</h2>
-    </div>
     <form id="registrationForm">
         <input type="text" name="username" placeholder="Username" required>
         <input type="email" name="email" placeholder="Email" required>
@@ -141,7 +167,29 @@
             }, 1000);
         }
     });
+    
+     //clock
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+
+            // Convert 24-hour time to 12-hour time
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+
+            const timeString = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+
+        setInterval(updateClock, 1000);
+        updateClock(); // initial call to display clock immediately
+        displayPhoneBrand(); // Call function to display cellphone brand
+    
 </script>
 
 </body>
-                            </html>
+</html>
