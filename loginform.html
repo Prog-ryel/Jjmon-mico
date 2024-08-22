@@ -98,8 +98,19 @@
             margin-bottom: 10px;
         }
         h2 {
+          
           font-size: 30px;
           color: #6802FB;
+        }
+        .rre-img {
+          
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .rre {
+          height: 100%;
+          width: 70%;
         }
     </style>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -107,7 +118,12 @@
 <body>
 
 <div class="login-container">
+  <div class="rre-img">
+    
+    <img class="rre" src="rre.png" alt="">
     <h2>Login</h2>
+  </div>
+    
     <form id="loginForm">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
