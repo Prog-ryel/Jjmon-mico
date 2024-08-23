@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to my portfolio </title>
+    <style>
+        /* Base Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease-in-out;
+            padding-top: 80px; /* Space for the fixed navigation bar */
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-container {
+            display: inline-block;
+            text-align: center;
+        }
+
+        .profile-container img {
+            border-radius: 50%;
+            width: 150px; /* Adjust size as needed */
+            height: 150px; /* Adjust size as needed */
+            object-fit: cover;
+        }
+
+        .profile-container .name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #333;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Ensure it's on top */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        nav .nav-left, nav .nav-right {
+            flex: 1;
+        }
+
+        nav .nav-left img, nav .nav-right img {
+            border-radius: 50%;
+            width: 50px; /* Adjust size as needed */
+            height: 50px; /* Adjust size as needed */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            flex: 4; /* Center the navigation links */
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+            padding: 10px 20px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: #ff7e5f;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            color: #ff7e5f;
+        }
+
+        nav ul li a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 20px;
+            margin: 40px auto;
+            background: #fff;
+            width: 80%;
+            border-radius: 12px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        section p,
+        section ul {
+            font-size: 1.1rem;
+            color: #555;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Backgrounds for each section */
+        section#home {
+            background: linear-gradient(135deg, #69ff97, #00e4ff);
+            color: #fff;
+            text-align: center;
+            animation: fadeInSection 1s ease-in-out;
+        }
+
+        section#about {
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            color: #fff;
+            animation: fadeInSection 1.2s ease-in-out;
+        }
+
+        section#services {
+            background: linear-gradient(135deg, #fc5c7d, #6a82fb);
+            color: #fff;
+            animation: fadeInSection 1.4s ease-in-out;
+        }
+
+        section#contact {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #fff;
+            animation: fadeInSection 1.6s ease-in-out;
+        }
+
+        @keyframes fadeInSection {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            section {
+                width: 90%;
+            }
+
+            body {
+                padding-top: 100px; /* Adjust for potential smaller screens */
+            }
+
+            nav .nav-left, nav .nav-right {
+                display: none; /* Hide profile pictures on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="profile-container">
+            <img src="junry.jpeg" alt="Junry Pacot">
+            <div class="name">Junry Pacot</div>
+        </div>
+        <p>Junior Developer| Web Developer</p>
+    </header>
+    
+    <nav>
+        <div class="nav-left">
+            <img src="junry.jpeg" alt="Left Profile">
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <img src="junry.jpg" alt="Right Profile">
+        </div>
+    </nav>
+    
+    <section id="home">
+        <h2>Welcome to My Portfolio</h2>
+        <p>I am Junry Pacot, a junior developer with a passion for creating efficient and visually appealing websites. Explore my portfolio to see my work and learn more about my skills and services.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+           I am Junry Pacot a First year BSIT student at Agusan del Sur State College of Agriculture and Technology – College of Computing and Information Sciences. Together, we will harness the power of technology to innovate, inspire, and impact the world positively.
+        </p>
+        
+    </section>
+
+    <section id="services">
+        <h2>Services</h2>
+        <ul>
+            <li>Web Development: Creating responsive and dynamic websites using modern technologies.</li>
+            <li>Code Debugging: Identifying and fixing bugs in code to ensure smooth functionality.</li>
+            <li>Custom Animations and CSS Designs: Crafting visually appealing animations
+            .</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>If you would like to get in touch, please reach out via email or connect with me on social media.</p>
+        <p>Email: <a href="mailto: junrypacot878@gmail.com" style="color: #fff; text-decoration: underline;">junrypacot878@gmail.com</a></p>
+        <p>Location: Philippines</p>
+        <p>Facebook: <a href="https://www.facebook.com/profile.php?id=100075262125552" target="_blank" style="color: #fff; text-decoration: underline;">Junry Pacot</a></p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Junry Pacot. All rights reserved.</p>
+    </footer>
+                                                                                                      </body>
+          
