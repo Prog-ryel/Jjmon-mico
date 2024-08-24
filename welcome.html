@@ -17,12 +17,13 @@
 
         body {
             font-family: 'Poppins', Arial, sans-serif;
-            background: url('jjmon.jpg') no-repeat top;
+            
+       /*/     background: url('jjmon.jpg') no-repeat top; /*/
             background-size: cover;
-        /*/   background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6)); /*/
+          background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.6), rgba(0, 255, 0, 0.6)); 
             background-size: 200% 200%;
             animation: gradientAnimation 2s ease infinite;
-            height: 157vh; /* Increased height to allow scrolling */
+            height: 200vh; /* Increased height to allow scrolling */
             margin: 0;
             position: relative;
         }
@@ -147,8 +148,8 @@
           background: red;
         }/*/
         /* From Uiverse.io by hakemdamer222 */ 
-button,
-button:focus {
+#playPauseBtn,
+#playPauseBtn:focus {
   font-size: 17px;
   padding: 5px 17px;
   border-radius: 0.7rem;
@@ -162,7 +163,7 @@ button:focus {
   transition-timing-function: linear;
 }
 
-button:active {
+#playPauseBtn:active {
   transform: translate(0, 0);
   border-bottom: 2px solid rgb(50, 50, 50);
 }
@@ -299,6 +300,35 @@ button:active {
           color: #00B0FF;
           font-family: bold;
         }
+        .slider {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-button {
+            background-color: transparent;
+            color: #747474;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #image {
+            width: 250px;
+            height: 300px;
+            margin: 0 20px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .nav-button:active {
+            transform: scale(0.95);
+        }
     </style>
 </head>
 <body>
@@ -311,7 +341,13 @@ button:active {
         <button id="playPauseBtn" onclick="toggleMusic()">Play Music</button>
     </div>
 </header>
-
+<hr>
+<div class="slider">
+        <button id="prev" class="nav-button"><</button>
+        <img id="image" src="/almero.jpg" alt="Slider Image">
+        <button id="next" class="nav-button">></button>
+    </div>
+ <hr>
 <p class="label">("click name")</p>
 
         
@@ -419,13 +455,47 @@ button:active {
         <label>prog-ryel</label>
         
     </div>
+    
   </div>
+  
+  <audio id="welcomeSound" src="pinoy.mp3" preload="auto"></audio> 
 
 <div id="falling-container"></div>
     
 <audio id="myAudio" src="pinoy.mp3" type="audio/mp3"></audio>
 
 <script>
+
+const images = ["/almero.jpg", "/jjmon.jpg", "/salute.jpg", "/micoy.jpg","a.jpg", "b.jpg", "c.jpg", "d.jpg", "e.jpg", "f.jpg", "g.jpg", "h.jpg", "i.jpg", "j.jpg", "k.jpg","l.jpg", "m.jpg", "n.jpg"]; // lista sa imong mga images
+        let currentIndex = 0;
+
+        const imageElement = document.getElementById("image");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+
+        function showImage(index) {
+            imageElement.src = images[index];
+        }
+
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            showImage(currentIndex);
+        });
+
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            showImage(currentIndex);
+        });
+
+        // Function para mo-automatic ug slide kada 3 seconds (3000 milliseconds)
+        function autoSlide() {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            showImage(currentIndex);
+        }
+
+        setInterval(autoSlide, 5000); // Mo-slide kada 3 secon
+
+
     function createFallingEmoji() {
         const container = document.getElementById('falling-container');
         const emoji = document.createElement('div');
@@ -476,13 +546,23 @@ button:active {
         playPauseBtn.textContent = "Play Music";
         isPlaying = false;
     };
-    // Display username when the page loads
+// Display username when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     const username = localStorage.getItem('loggedInUsername');
     if (username) {
         document.getElementById('username').textContent = username;
     }
     });
+    
+    // Popup nga mo-display ug mensahe
+        function showWelcomePopup() {
+            if (confirm("Welcome to Bahay ni Mico")) {
+                welcomeSound.play(); // Play the sound pag-click sa "OK"
+            }
+        }
+
+        // I-show ang popup pag load sa page
+        window.onload = showWelcomePopup;
 
 </script>
-    </html>
+             </html>
