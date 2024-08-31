@@ -4,17 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>C++ CODE</title>
+  <title>HTML CODE</title>
   <style>
     body {
       background-color: #09E5E6;
     }
-    .video-container {
+    .video-container, .video-containers {
           display: flex;
           align-items: center;
           justify-content: center;
           margin-top: 2rem;
         }
+     .video-containers video {
+       width: 300px;
+     }
         img {
             border: 2px solid #3700FFFA;
             width: 205px;
@@ -79,6 +82,37 @@ button:hover::before {
 <hr>
 
 <body>
+  
+   <div class="video-containers">
+  <div class="video">
+   <video controls>
+  <source src="micodance.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+  
+  <hr>
+  
+  <div class="video-containers">
+  <div class="video">
+   <video controls>
+  <source src="micosong.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+  
+  <hr>
+  
+  <div class="video-containers">
+  <div class="video">
+   <video controls>
+  <source src="jamesjj.mp4" type="video/mp4">
+</video>
+
+</div>
+</div>
+  
+  <hr>
   
   <div class="video-container">
   <div class="video">
