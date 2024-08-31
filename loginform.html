@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Login Form</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
@@ -39,12 +40,12 @@
             border-radius: 4px;
         }
         input {
-          outline: 1px solid #872FEB;
+            outline: 1px solid #872FEB;
         }
 
         input:hover, input:active {
-          outline: 2px solid #872FEB;
-          filter: drop-shadow(1px 1px 15px #872FEB);
+            outline: 2px solid #872FEB;
+            filter: drop-shadow(1px 1px 15px #872FEB);
         }
         .login-container button {
             width: 98%;
@@ -98,63 +99,56 @@
             margin-bottom: 10px;
         }
         h2 {
-          
-          font-size: 30px;
-          color: #6802FB;
+            font-size: 30px;
+            color: #6802FB;
         }
-       .rre-img {
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid #00FFEF; /* Bright cyan border */
-          background: linear-gradient(135deg, #FF6EC7, #FF9A8B, #00FFEF, #9B59B6, #AC02FF); /* Multi-color gradient */
-          background-size: 400% 400%; /* Expands gradient for more effect */
-          animation: gradientAnimation 10s ease infinite; /* Animation for dynamic effect */
-          box-shadow: 0 0 20px rgba(255, 105, 180, 0.6); /* Neon glow effect */
+        .rre-img {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #00FFEF; /* Bright cyan border */
+            background: linear-gradient(135deg, #FF6EC7, #FF9A8B, #00FFEF, #9B59B6, #AC02FF); /* Multi-color gradient */
+            background-size: 400% 400%; /* Expands gradient for more effect */
+            animation: gradientAnimation 10s ease infinite; /* Animation for dynamic effect */
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.6); /* Neon glow effect */
         }
 
         @keyframes gradientAnimation {
-          0% { background-position: 0% 0%; }
-          50% { background-position: 100% 100%; }
-          100% { background-position: 0% 0%; }
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
         .rre {
-          height: 100%;
-          width: 70%;
+            height: 100%;
+            width: 70%;
         }
         .show-password {
-          margin-bottom: 1rem;
+            margin-bottom: 1rem;
         }
         .clock {
-          text-align: start;
-            
+            text-align: start;
             font-size: 15px;
             color: red;
-     
-            
         }
-        
     </style>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
 <div class="login-container">
-   <div class="clock" id="clock"></div>
-  <hr>
-  <div class="rre-img">
-    
-    <img class="rre" src="rre.png" alt="">
-   
-  </div>
-  <hr>
-     <h2>Login</h2>
+    <div class="clock" id="clock"></div>
+    <hr>
+    <div class="rre-img">
+        <img class="rre" src="rre.png" alt="">
+    </div>
+    <hr>
+    <h2>Login</h2>
     <form id="loginForm">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" id="password" placeholder="Password" required>
         <div id="message"></div>
         <br>
-        
+
         <div class="show-password">
             <input type="checkbox" id="showPassword" onclick="togglePassword()"> 
             <label class="label" for="showPassword">Show Password</label>
@@ -181,90 +175,98 @@
 </div>
 
 <script>
+    // SweetAlert notification
+    function showAlert(message, type) {
+        Swal.fire({
+            title: type === 'success' ? 'Success' : 'Error',
+            text: message,
+            icon: type
+        });
+    }
 
-  function togglePassword() {
-            const passwordField = document.getElementById('passwords');
-            const showPassword = document.getElementById('showPassword');
-            if (showPassword.checked) {
-                passwordField.type = 'text';
-            } else {
-                passwordField.type = 'password';
-            }
-        }
-        
     // Check if credentials match the registered user
-// Check if credentials match the registered user
-function loginUser(username, password) {
-    const registeredUser = JSON.parse(localStorage.getItem('registeredUser'));
-    
-    if (registeredUser && registeredUser.username === username && registeredUser.password === password) {
-        // Store the logged-in username in localStorage
-        localStorage.setItem('loggedInUsername', username);
-        return true;
-    }
-    return false;
-}
+    function loginUser(username, password) {
+        const registeredUser = JSON.parse(localStorage.getItem('registeredUser'));
 
-// Login form submission
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const username = event.target.username.value;
-    const password = event.target.password.value;
-
-    if (loginUser(username, password)) {
-        document.getElementById('message').textContent = "Login successful!";
-        document.getElementById('message').classList.add('success');
-        // Redirect to dashboard or another page here
-        window.location.href = 'welcome.html';  // Change 'dashboard.html' to your target page
-    } else {
-        document.getElementById('message').textContent = "Invalid username or password!";
-        document.getElementById('message').classList.add('error');
-    }
-});
-
-// Toggle password visibility
-function togglePassword() {
-    const passwordField = document.getElementById('password');
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-    } else {
-        passwordField.type = "password";
-    }
-}
-// Toggle password visibility
-function togglePassword() {
-    const passwordField = document.getElementById('password');
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-    } else {
-        passwordField.type = "password";
-    }
-}
-
-    //clock
-        function updateClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-
-            // Convert 24-hour time to 12-hour time
-            hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
-
-            const timeString = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
-            document.getElementById('clock').textContent = timeString;
+        if (registeredUser && registeredUser.username === username && registeredUser.password === password) {
+            // Store the logged-in username in localStorage
+            localStorage.setItem('loggedInUsername', username);
+            return true;
         }
+        return false;
+    }
 
+    // Login form submission
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
 
-        setInterval(updateClock, 1000);
-        updateClock(); // initial call to display clock immediately
-       
+        const username = event.target.username.value;
+        const password = event.target.password.value;
 
-    
+        if (loginUser(username, password)) {
+            showAlert('Login successful!', 'success');
+            document.getElementById('message').textContent = "Login successful!";
+            document.getElementById('message').classList.add('success');
+            // Redirect to dashboard or another page here
+            window.location.href = 'welcome.html';  // Change 'dashboard.html' to your target page
+        } else {
+            showAlert('Invalid username or password!', 'error');
+            document.getElementById('message').textContent = "Invalid username or password!";
+            document.getElementById('message').classList.add('error');
+        }
+    });
 
+    // Toggle password visibility
+    function togglePassword() {
+        const passwordField = document.getElementById('password');
+        passwordField.type = passwordField.type === "password" ? "text" : "password";
+    }
+
+    // Clock
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        // Convert 24-hour time to 12-hour time
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+
+        const timeString = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+        document.getElementById('clock').textContent = timeString;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call to display clock immediately
+
+    // Google Sign-In callback function
+    function handleCredentialResponse(response) {
+        // Decode the ID token
+        const responsePayload = decodeJwtResponse(response.credential);
+
+        // Process user login with Google ID token
+        console.log('ID: ' + responsePayload.sub);
+        console.log('Full Name: ' + responsePayload.name);
+        console.log('Given Name: ' + responsePayload.given_name);
+        console.log('Family Name: ' + responsePayload.family_name);
+        console.log('Image URL: ' + responsePayload.picture);
+        console.log('Email: ' + responsePayload.email);
+
+        // You can now redirect to a protected page or take other actions
+        window.location.href = 'welcome.html';
+    }
+
+    function decodeJwtResponse(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        return JSON.parse(jsonPayload);
+    }
 </script>
 
 </body>
