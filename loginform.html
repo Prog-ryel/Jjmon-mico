@@ -175,14 +175,33 @@
 </div>
 
 <script>
-    // SweetAlert notification
-    function showAlert(message, type) {
+// Handle the form submission and SweetAlert
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const username = event.target.username.value;
+    const password = event.target.password.value;
+
+    if (loginUser(username, password)) {
         Swal.fire({
-            title: type === 'success' ? 'Success' : 'Error',
-            text: message,
-            icon: type
+            title: "Login Successful!",
+            text: "You will be redirected shortly.",
+            icon: "success",
+            confirmButtonText: "OK"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'welcome.html';
+            }
+        });
+    } else {
+        Swal.fire({
+            title: "Login Failed",
+            text: "Invalid username or password!",
+            icon: "error",
+            confirmButtonText: "Try Again"
         });
     }
+});
 
     // Check if credentials match the registered user
     function loginUser(username, password) {
