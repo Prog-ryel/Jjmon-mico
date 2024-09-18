@@ -286,84 +286,83 @@
     
      <div id="fb-root"></div>
     <script>
-        const apiKey = 'AIzaSyD2voLYcLkoH56VtfZY0Q8xGZCclLyW3ys'; // Replace with your API key
-        const searchInput = document.getElementById('search');
-        const searchButton = document.getElementById('search-button');
-        const videoContainer = document.getElementById('video-container');
-        const suggestionsBox = document.getElementById('suggestions');
+        document.addEventListener('DOMContentLoaded', function () {
+    const apiKey = 'AIzaSyALgVmFt23O1NR0cfOUJZsBF8IlVBCWUn8'; // Replace with your API key
+    const searchInput = document.getElementById('search');
+    const searchButton = document.getElementById('search-button');
+    const videoContainer = document.getElementById('video-container');
+    const suggestionsBox = document.getElementById('suggestions');
+    
+    // Load search history from localStorage
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
-        // Load search history from localStorage
-        const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-
-        // Display suggestions as user types
-        searchInput.addEventListener('input', function() {
-            const query = searchInput.value.toLowerCase();
-            if (query.length > 2) {
-                const filteredHistory = searchHistory.filter(item => item.toLowerCase().includes(query));
-                showSuggestions(filteredHistory);
-            } else {
-                suggestionsBox.style.display = 'none';
-            }
-        });
-
-        // Populate the suggestion box
-        function showSuggestions(suggestions) {
-            suggestionsBox.innerHTML = '';
-            if (suggestions.length > 0) {
-                suggestions.forEach(suggestion => {
-                    const div = document.createElement('div');
-                    div.textContent = suggestion;
-                    div.addEventListener('click', () => {
-                        searchInput.value = suggestion;
-                        fetchVideos(suggestion);
-                        suggestionsBox.style.display = 'none';
-                    });
-                    suggestionsBox.appendChild(div);
-                });
-                suggestionsBox.style.display = 'block';
-            } else {
-                suggestionsBox.style.display = 'none';
-            }
+    // Display suggestions as user types
+    searchInput.addEventListener('input', function () {
+        const query = searchInput.value.toLowerCase();
+        if (query.length > 2) {
+            const filteredHistory = searchHistory.filter(item => item.toLowerCase().includes(query));
+            showSuggestions(filteredHistory);
+        } else {
+            suggestionsBox.style.display = 'none';
         }
+    });
 
-       // Fetch videos from YouTube API
-function fetchVideos(query) {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=${query}&key=${apiKey}`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            videoContainer.innerHTML = '';
-            data.items.forEach(item => {
-                const videoId = item.id.videoId;
-                const video = document.createElement('div');
-                video.classList.add('video');
-                video.innerHTML = `
-                    <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
-                    <h3>${item.snippet.title}</h3>
-                    <a href="https://en1.savefrom.net/21-youtube-to-mp4-37Nq.html?url=https://www.youtube.com/watch?v=${videoId}" class="download-btn" target="_blank">Download MP4</a>
-                    <a href="https://en1.savefrom.net/102-youtube-music-downloader-2Ck.html?url=https://www.youtube.com/watch?v=${videoId}" class="download-btn" target="_blank">Download MP3</a>
-                `;
-                videoContainer.appendChild(video);
+    function showSuggestions(suggestions) {
+        suggestionsBox.innerHTML = '';
+        if (suggestions.length > 0) {
+            suggestions.forEach(suggestion => {
+                const div = document.createElement('div');
+                div.textContent = suggestion;
+                div.addEventListener('click', () => {
+                    searchInput.value = suggestion;
+                    fetchVideos(suggestion);
+                    suggestionsBox.style.display = 'none';
+                });
+                suggestionsBox.appendChild(div);
             });
+            suggestionsBox.style.display = 'block';
+        } else {
+            suggestionsBox.style.display = 'none';
+        }
+    }
 
-            // Save query to search history
-            if (!searchHistory.includes(query)) {
-                searchHistory.push(query);
-                localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-            }
-        })
-        .catch(error => console.error('Error fetching videos:', error));
-}
-        // Search button functionality
-        searchButton.addEventListener('click', function() {
-            const query = searchInput.value;
-            if (query.length > 2) {
-                fetchVideos(query);
-            } else {
+    function fetchVideos(query) {
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=${encodeURIComponent(query)}&key=${apiKey}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
                 videoContainer.innerHTML = '';
-            }
-        });
+                data.items.forEach(item => {
+                    const videoId = item.id.videoId;
+                    const video = document.createElement('div');
+                    video.classList.add('video');
+                    video.innerHTML = `
+                        <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                        <h3>${item.snippet.title}</h3>
+                        <a href="https://en1.savefrom.net/21-youtube-to-mp4-37Nq.html?url=https://www.youtube.com/watch?v=${videoId}" class="download-btn" target="_blank">Download MP4</a>
+                        <a href="https://en1.savefrom.net/102-youtube-music-downloader-2Ck.html?url=https://www.youtube.com/watch?v=${videoId}" class="download-btn" target="_blank">Download MP3</a>
+                    `;
+                    videoContainer.appendChild(video);
+                });
+
+                if (!searchHistory.includes(query)) {
+                    searchHistory.push(query);
+                    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+                }
+            })
+            .catch(error => console.error('Error fetching videos:', error));
+    }
+
+    searchButton.addEventListener('click', function () {
+        const query = searchInput.value;
+        if (query.length > 2) {
+            fetchVideos(query);
+        } else {
+            videoContainer.innerHTML = '';
+        }
+    });
+});
         
         let adModal = document.getElementById('ad-modal');
         let skipBtn = document.getElementById('skip-btn');
