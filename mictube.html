@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mic Tube</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+        body {
+            font-family: 'Poppins';
+            margin: 0;
+            padding: 0;
+            background-color: #87D3C2;
+        }
+
+        header {
+            background-color: #333;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        #search-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        #search {
+            width: 60%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        #search-button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: #f00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #search-button:hover {
+            background-color: #d00;
+        }
+
+        /* Suggestions Dropdown */
+        .suggestions {
+            position: absolute;
+            top: 40px;
+            left: 20%;
+            width: 60%;
+            background-color: white;
+            border: 1px solid #ddd;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            display: none;
+        }
+
+        .suggestions div {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .suggestions div:hover {
+            background-color: #f0f0f0;
+        }
+
+        #video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            border: 1.2px solid #7339F0;
+        }
+
+        .video {
+            width: 640px;
+            margin: 15px;
+            background-color: white;
+            border: 1.5px solid #7339F0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .video:hover {
+            transform: scale(1.03);
+        }
+
+        .video iframe {
+            width: 100%;
+            height: 210px; /* Adjust the height as needed */
+        }
+
+        .video h3 {
+            padding: 10px;
+            margin: 0;
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+
+        .video a {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-top: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+
+        .video a:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+          font-size: 28px;
+          background-image: linear-gradient(
+             45deg, #FF0000, #FF7300, #FFFB00, #48FF00, #00FFD5, #002BFF, #FF00CB, #FF0000
+           );
+           background-size: 400% 400%;
+           animation: glowing 25s linear infinite;
+           background-clip: text;
+           -webkit-background-clip: text;
+           color: transparent;
+        }
+       p {
+          background-image: linear-gradient(
+             45deg, #FF0000, #FF7300, #FFFB00, #48FF00, #00FFD5, #002BFF, #FF00CB, #FF0000
+           );
+           background-size: 400% 400%;
+           animation: glowing 25s linear infinite;
+           background-clip: text;
+           -webkit-background-clip: text;
+           color: transparent;
+         }
+        @keyframes glowing {
+           0% {
+          background-position: 0% 0%;
+         }
+         50% {
+          background-position: 400% 0%;
+         }
+         100% {
+          background-position: 0% 0%;
+         }
+        }
+       .img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%; /* Make the image circular */
+            object-fit: cover; /* Ensure the image covers the circular area */
+            animation: rotate 8s linear infinite; /* Add rotation animation */
+            filter: drop-shadow(1px 1px 15px #02F4EA);
+            border: 1px solid #0D20EE;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        input {
+            outline: 1px solid #872FEB;
+        }
+
+        input:hover, input:active {
+            outline: 2px solid #872FEB;
+            filter: drop-shadow(1px 1px 15px #872FEB);
+        }
+        footer {
+          margin-top: 1rem;
+          background: #333;
+          text-align: center;
+          padding: 1px;
+          font-size: 11px;
+          border-radius: 20px;
+        }
+        p {
+          font-weight: bold;
+        }
+        .fb-pages {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 1.5rem;
+        }
+        .fb-page {
+          border: 1px solid #7100FF;
+          filter: drop-shadow(1px 1px 10px #7100FF);
+        }
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 15% auto;
+            width: 60%;
+            background-color: #C1C1C4;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .modal-content video {
+            width: 100%;
+        }
+
+        #skip-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            display: none; /* Initially hidden */
+        }
+
+        #countdown {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+  
+    <header>
+     <div class="cards">
+       <img class="img" src="mico2.jpg" alt="Mico">
+     </div>
+        <h1>Mic Tube</h1>
+        <div id="search-container">
+            <input type="text" id="search" placeholder="Search...">
+            <button id="search-button">Search</button>
+            <div class="suggestions" id="suggestions"></div> <!-- Suggestion box -->
+        </div>
+    </header>
+    <main id="video-container">
+        <!-- Videos will be displayed here -->
+    </main>
+    
+    
+    <!-- Modal for video ad -->
+    <div id="ad-modal" class="modal">
+        <div class="modal-content">
+            <video id="ad-video" autoplay controls>
+                <source src="regor.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div id="countdown">15 seconds</div>
+            <button id="skip-btn">Skip Ad</button>
+        </div>
+    </div>
+    
+    <div class="fb-pages">
+ <div class="fb-page" data-href="https://www.facebook.com/snditsolutions" data-tabs="timeline" data-width="290" data-height="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/snditsolutions" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/snditsolutions">SND I.T. Solutions - Computer Store</a></blockquote></div>
+</div>
+    
+     <div id="fb-root"></div>
+    <script>
+        const apiKey = 'AIzaSyD2voLYcLkoH56VtfZY0Q8xGZCclLyW3ys'; // Replace with your API key
+        const searchInput = document.getElementById('search');
+        const searchButton = document.getElementById('search-button');
+        const videoContainer = document.getElementById('video-container');
+        const suggestionsBox = document.getElementById('suggestions');
+
+        // Load search history from localStorage
+        const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+        // Display suggestions as user types
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase();
+            if (query.length > 2) {
+                const filteredHistory = searchHistory.filter(item => item.toLowerCase().includes(query));
+                showSuggestions(filteredHistory);
+            } else {
+                suggestionsBox.style.display = 'none';
+            }
+        });
+
+        // Populate the suggestion box
+        function showSuggestions(suggestions) {
+            suggestionsBox.innerHTML = '';
+            if (suggestions.length > 0) {
+                suggestions.forEach(suggestion => {
+                    const div = document.createElement('div');
+                    div.textContent = suggestion;
+                    div.addEventListener('click', () => {
+                        searchInput.value = suggestion;
+                        fetchVideos(suggestion);
+                        suggestionsBox.style.display = 'none';
+                    });
+                    suggestionsBox.appendChild(div);
+                });
+                suggestionsBox.style.display = 'block';
+            } else {
+                suggestionsBox.style.display = 'none';
+            }
+        }
+
+        // Fetch videos from YouTube API
+        function fetchVideos(query) {
+            const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=${query}&key=${apiKey}`;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    videoContainer.innerHTML = '';
+                    data.items.forEach(item => {
+                        const videoId = item.id.videoId;
+                        const video = document.createElement('div');
+                        video.classList.add('video');
+                        video.innerHTML = `
+                            <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                            <h3>${item.snippet.title}</h3>
+                            <a href="https://en1.savefrom.net/21-youtube-to-mp4-37Nq.html/${videoId}" class="download-btn" target="_blank">Download MP4</a>
+                            <a href="https://en1.savefrom.net/102-youtube-music-downloader-2Ck.html/${videoId}" class="download-btn" target="_blank">Download MP3</a>
+                        `;
+                        videoContainer.appendChild(video);
+                    });
+                    
+                    // Save query to search history
+                    if (!searchHistory.includes(query)) {
+                        searchHistory.push(query);
+                        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+                    }
+                })
+                .catch(error => console.error('Error fetching videos:', error));
+        }
+
+        // Search button functionality
+        searchButton.addEventListener('click', function() {
+            const query = searchInput.value;
+            if (query.length > 2) {
+                fetchVideos(query);
+            } else {
+                videoContainer.innerHTML = '';
+            }
+        });
+        
+        let adModal = document.getElementById('ad-modal');
+        let skipBtn = document.getElementById('skip-btn');
+        let countdownElement = document.getElementById('countdown');
+        let timeLeft = 15; // Ad duration in seconds
+        let adVideo = document.getElementById('ad-video');
+
+        // Show the ad modal
+        function showAd() {
+            adModal.style.display = 'block';
+
+            // Countdown logic
+            let countdownInterval = setInterval(function() {
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    skipBtn.style.display = 'block'; // Show the skip button
+                    countdownElement.style.display = 'none';
+                } else {
+                    countdownElement.innerHTML = timeLeft + " seconds";
+                }
+                timeLeft -= 1;
+            }, 1000);
+        }
+
+        // Hide the ad modal when the skip button is clicked
+        skipBtn.addEventListener('click', function() {
+            adModal.style.display = 'none';
+            adVideo.pause(); // Stop the video when skipped
+        });
+
+        // Show the ad when the page loads
+        window.onload = function() {
+            showAd();
+        };
+
+    </script>
+   
+    
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0" nonce="vgjXmP2C"></script>
+</body>
+<footer>
+  <p>All rights reserved 2024 || Developed by Micosawa</p>
+</footer>
+  </html>
