@@ -326,8 +326,7 @@
             }
         }
 
-        // Fetch videos from YouTube API
-        // Fetch videos from YouTube API
+       // Fetch videos from YouTube API
 function fetchVideos(query) {
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=${query}&key=${apiKey}`;
 
@@ -343,7 +342,7 @@ function fetchVideos(query) {
                     <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
                     <h3>${item.snippet.title}</h3>
                     <a href="https://en1.savefrom.net/21-youtube-to-mp4-37Nq.html?url=https://www.youtube.com/watch?v=${videoId}" class="download-btn" target="_blank">Download MP4</a>
-                    <a href="https://ytmp3.cc/youtube-to-mp3/${videoId}" class="download-btn" target="_blank">Download MP3</a>
+                    <a href="https://en1.savefrom.net/102-youtube-music-downloader-2Ck.html?url=https://www.youtube.com/watch?v=${videoId}" class="download-btn" target="_blank">Download MP3</a>
                 `;
                 videoContainer.appendChild(video);
             });
@@ -356,7 +355,6 @@ function fetchVideos(query) {
         })
         .catch(error => console.error('Error fetching videos:', error));
 }
-
         // Search button functionality
         searchButton.addEventListener('click', function() {
             const query = searchInput.value;
@@ -409,4 +407,4 @@ function fetchVideos(query) {
 <footer>
   <p>All rights reserved 2024 || Developed by Micosawa</p>
 </footer>
-        </html>
+</html>
